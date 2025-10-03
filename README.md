@@ -19,22 +19,8 @@
 
 - **Frontend**: React + TailwindCSS  
 - **Backend**: Node.js + Express  
-- **AI Processing**: OpenAI / Whisper / Custom Models  
+- **AI Processing**: GeminiAI / Whisper / Custom Models  
 - **Video Handling**: FFmpeg  
-- **Database**: Firebase / MongoDB (depending on setup)  
+- **Database**: Neon Database Serverles (PosgreSQL)
 
----
 
-## 📸 Demo  
-
-> 🖼️ *(Add screenshots or a short demo GIF of the app here!)*  
-
----
-
-## 📦 Installation  
-
-Clone the repo and get started:  
-
-```bash
-git clone https://github.com/yourusername/autoclipfarm.git
-cd autoclipfarm

@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import ytRoute from "./routes/apis/yt.ts";
+import AiClipperRoute from "./routes/apis/gemini.ts";
 import path from "path";
 import dotenv from 'dotenv';
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 //routes
 
 app.use("/yt", ytRoute);
+app.use("/ai", AiClipperRoute);
 
 //static routes
 app.use(

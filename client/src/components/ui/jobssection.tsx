@@ -1,6 +1,17 @@
 import React, { useState } from "react";
-import { Upload, Download } from "lucide-react";
-
+import {
+  Upload,
+  Sparkles,
+  Hash,
+  Type,
+  Mic,
+  Zap,
+  Volume2,
+  Save,
+  Play,
+  Clock,
+  Download,
+} from "lucide-react";
 type JobStatus = "processing" | "queued" | "completed";
 
 type JobCardProps = {
@@ -36,7 +47,7 @@ const JobCard: React.FC<JobCardProps> = ({
         </span>
         <span>{time}</span>
       </div>
-      
+
       <h3 className="font-medium text-gray-800">{title}</h3>
       <p className="text-sm text-gray-500">
         {videoInfo} • {variations}
@@ -70,8 +81,9 @@ const JobCard: React.FC<JobCardProps> = ({
   );
 };
 
+
 const CreateJobPanel: React.FC = () => (
-  <div className="bg-white rounded-lg shadow-md p-6 space-y-5">
+  <div className="bg-white rounded-lg shadow-md p-6 space-y-6">
     <h2 className="text-lg font-semibold">Create New Clip Generation Job</h2>
 
     <div>
@@ -125,16 +137,119 @@ const CreateJobPanel: React.FC = () => (
       </span>
     </div>
 
+    {/* Unlimited Extraction */}
     <div className="bg-green-50 border border-green-200 rounded-md p-3 text-xs text-green-800 leading-relaxed">
       <strong className="block text-sm mb-1">UNLIMITED AI EXTRACTION</strong>
       Our AI analyzes your entire video content and extracts ALL segments that
-      match your instructions. No “clips per video” limit!<br />
+      match your instructions. No “clips per video” limit!
+      <br />
       <br />
       1hr course: 50+ clips • 3hr interview: 200+ clips • 6hr conference: 500+
       clips
     </div>
+
+    {/* Content Enhancements */}
+    <div>
+      <h3 className="text-sm font-semibold text-purple-700 flex items-center gap-1 mb-3">
+        <Sparkles size={16} className="text-purple-600" />
+        Content Enhancement Options
+      </h3>
+      <div className="grid grid-cols-2 gap-3 text-sm">
+        {[
+          {
+            label: "Emoji Enhancement",
+            desc: "Add relevant emojis to emphasize key moments",
+            icon: "😊",
+          },
+          {
+            label: "Auto Hashtags",
+            desc: "Generate trending hashtags automatically",
+            icon: <Hash size={14} className="text-blue-500" />,
+          },
+          {
+            label: "Title Cards",
+            desc: "Add engaging title cards at the beginning",
+            icon: <Type size={14} className="text-green-500" />,
+          },
+          {
+            label: "Karaoke Captions",
+            desc: "Word-by-word synchronized highlighting",
+            icon: <Mic size={14} className="text-red-500" />,
+          },
+          {
+            label: "Viral Effects",
+            desc: "Add trending visual effects and transitions",
+            icon: <Zap size={14} className="text-yellow-500" />,
+          },
+          {
+            label: "Sound Effects",
+            desc: "Add impact sounds and audio enhancements",
+            icon: <Volume2 size={14} className="text-indigo-500" />,
+          },
+        ].map((opt) => (
+          <label
+            key={opt.label}
+            className="flex items-start gap-2 border border-gray-200 rounded-md p-3 cursor-pointer hover:border-purple-400"
+          >
+            <input type="radio" name="enhancement" className="mt-1" />
+            <div>
+              <p className="font-medium text-gray-800 flex items-center gap-1">
+                {opt.icon} {opt.label}
+              </p>
+              <p className="text-xs text-gray-500">{opt.desc}</p>
+            </div>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    {/* Advanced Enhancements */}
+    <div>
+      <h3 className="text-sm font-semibold text-purple-700 flex items-center gap-1 mb-3">
+        <Sparkles size={16} className="text-purple-600" />
+        Advanced Enhancements
+      </h3>
+      <div className="space-y-3 text-sm">
+        <label className="flex items-start gap-2 border border-gray-200 rounded-md p-3 cursor-pointer hover:border-purple-400">
+          <input type="radio" name="advanced" className="mt-1" />
+          <div>
+            <p className="font-medium text-gray-800">Engagement Boost</p>
+            <p className="text-xs text-gray-500">
+              Add hooks, questions, and call-to-actions
+            </p>
+          </div>
+        </label>
+
+        <label className="flex items-start gap-2 border border-gray-200 rounded-md p-3 cursor-pointer hover:border-purple-400">
+          <input type="radio" name="advanced" className="mt-1" />
+          <div>
+            <p className="font-medium text-gray-800">AI Style Transfer</p>
+            <p className="text-xs text-gray-500">
+              Apply trending visual styles automatically
+            </p>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    {/* Footer Action Bar */}
+    <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+      <div className="flex items-center text-xs text-gray-500">
+        <Clock size={14} className="mr-1" />
+        Processing time: 2–5 minutes per video
+      </div>
+      <div className="flex gap-2">
+        <button className="px-4 py-1 border border-gray-300 rounded-md text-xs font-medium hover:bg-gray-50 flex items-center gap-1">
+          <Save size={14} /> Save as Template
+        </button>
+        <button className="px-4 py-1 bg-purple-600 text-white rounded-md text-xs font-medium flex items-center gap-1 hover:bg-purple-700">
+          <Play size={14} /> Create Job
+        </button>
+      </div>
+    </div>
   </div>
 );
+
 
 const ActiveJobsPanel: React.FC = () => (
   <div className="p-3 space-y-5">
@@ -204,7 +319,6 @@ export const JobSection: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
           </button>
         </div>
 
-        {/* Active Tab Content */}
         {activeTab === "create" ? <CreateJobPanel /> : <ActiveJobsPanel />}
       </div>
     );

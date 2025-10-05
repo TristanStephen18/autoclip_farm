@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, Switch } from "wouter";
 import AuthPage from "./pages/auth/Auth";
 import YouTubeExtractor from "./pages/trials/youtubevideoextractor";
-import { Dashboard } from "./pages/main/Dashboard";
+import { Main } from "./pages/main";
 
 const queryClient = new QueryClient();
 
@@ -11,8 +11,8 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <Switch>
         <Route path="/" component={AuthPage} />
-        <Route path="/yt" component={YouTubeExtractor} />
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/yt" component={YouTubeExtractor} />        
+        <Route path="/home" component={Main} />
 
         <Route>
           {() => <div className="p-6 text-center">404 – Page not found</div>}

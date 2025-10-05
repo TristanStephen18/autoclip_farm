@@ -379,6 +379,107 @@ const ActiveJobsPanel: React.FC = () => {
   );
 };
 
+type Clip = {
+  id: string;
+  title: string;
+  duration: string;
+  tags: string[];
+  thumbnail: string;
+};
+
+const RecentClipsPanel: React.FC = () => {
+  const recentClips: Clip[] = [
+    {
+      id: "1",
+      title: "Top 5 AI Trends for 2025",
+      duration: "0:42",
+      tags: ["AI", "Tech", "Highlights"],
+      thumbnail:
+        "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=225&fit=crop",
+    },
+    {
+      id: "2",
+      title: "Funniest Startup Moments",
+      duration: "1:15",
+      tags: ["Funny", "Podcast"],
+      thumbnail:
+        "https://images.unsplash.com/photo-1573497019418-b400bb3ab074?w=400&h=225&fit=crop",
+    },
+    {
+      id: "3",
+      title: "Best Quotes About Machine Learning",
+      duration: "0:59",
+      tags: ["Quotes", "ML", "Inspiration"],
+      thumbnail:
+        "https://images.unsplash.com/photo-1551836022-4c4c79ecde51?w=400&h=225&fit=crop",
+    },
+  ];
+
+  return (
+    <div className="mt-10 bg-white rounded-lg shadow-md border border-gray-100 p-6">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-5">
+        <h2 className="text-lg font-semibold text-gray-800">Recent Clips</h2>
+        <button className="text-xs text-purple-600 font-medium hover:underline">
+          View All
+        </button>
+      </div>
+
+      {/* Clip Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {recentClips.map((clip) => (
+          <div
+            key={clip.id}
+            className="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition bg-white"
+          >
+            {/* Thumbnail */}
+            <div className="relative">
+              <img
+                src={clip.thumbnail}
+                alt={clip.title}
+                className="w-full h-32 object-cover"
+              />
+              <span className="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-0.5 rounded">
+                {clip.duration}
+              </span>
+            </div>
+
+            {/* Content */}
+            <div className="p-3 space-y-2">
+              <h3 className="text-sm font-medium text-gray-800 line-clamp-1">
+                {clip.title}
+              </h3>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-1">
+                {clip.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Actions */}
+              <div className="flex justify-between items-center pt-2">
+                <button className="flex items-center gap-1 text-xs text-purple-600 font-medium hover:text-purple-700">
+                  <Play size={12} /> Play
+                </button>
+                <button className="flex items-center gap-1 text-xs text-gray-600 font-medium hover:text-gray-800">
+                  <Download size={12} /> Download
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
 export const JobSection: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
   const [activeTab, setActiveTab] = useState<"create" | "jobs">("create");
 
@@ -409,14 +510,18 @@ export const JobSection: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
         </div>
 
         {activeTab === "create" ? <CreateJobPanel /> : <ActiveJobsPanel />}
+        <RecentClipsPanel /> {/* ✅ Add below */}
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-      <CreateJobPanel />
-      <ActiveJobsPanel />
+    <div className="space-y-8 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <CreateJobPanel />
+        <ActiveJobsPanel />
+      </div>
+      <RecentClipsPanel /> {/* ✅ Added below the dashboard */}
     </div>
   );
 };

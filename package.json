@@ -10,10 +10,19 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
-    "drizzle-kit": "^0.31.5",
+    "@neondatabase/serverless": "^1.0.2",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.44.6",
+    "neon": "^2.0.0",
     "nodemon": "^3.1.10",
-    "ts-node": "^10.9.2"
+    "pg": "^8.16.3",
+    "ts-node": "^10.9.2",
+    "vite": "^7.1.9",
+    "vite-express": "^0.21.1"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.5"
   }
 }
